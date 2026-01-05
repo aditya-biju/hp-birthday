@@ -4,11 +4,13 @@ const nameText = document.getElementById("name");
 const overlay = document.getElementById("letterOverlay");
 const letter = document.getElementById("letter");
 const seal = document.getElementById("seal");
-const letterText = document.getElementById("letterText");
+const lines = document.querySelectorAll(".ink");
+const signature = document.getElementById("signature");
 const finalMagic = document.getElementById("finalMagic");
 
 let x = window.innerWidth / 2;
 let y = window.innerHeight / 2;
+let opened = false;
 
 /* Wand movement + sparks */
 document.addEventListener("mousemove", e => {
@@ -43,51 +45,33 @@ function fireworks() {
   }
 }
 
-/* Spell click */
+/* Spell button */
 btn.addEventListener("click", () => {
   nameText.classList.add("show");
   fireworks();
   setTimeout(() => overlay.classList.add("show"), 700);
 });
 
-/* Letter typing */
-const message = `On this magical day, I just wanted to remind you how special you are.
-
-Your kindness, smile, and energy make the world brighter.
-
-May this year bring happiness, confidence, and unforgettable moments.
-
-Always believe in magic — because you are magic ✨
-
-Happy Birthday 💖`;
-
-let i = 0;
-let typed = false;
-
-function typeText() {
-  if (i < message.length) {
-    letterText.innerHTML += message[i] === "\n" ? "<br>" : message[i];
-    i++;
-    setTimeout(typeText, 35);
-  } else {
-    setTimeout(showFinalMagic, 700);
-  }
-}
-
-/* Wax seal click ONLY */
+/* Wax seal click */
 seal.addEventListener("click", () => {
-  if (typed) return;
-  typed = true;
+  if (opened) return;
+  opened = true;
 
   letter.classList.add("open");
-  letterText.innerHTML = "";
-  i = 0;
-  typeText();
-});
 
-/* Final magic name */
-function showFinalMagic() {
-  finalMagic.classList.add("show");
-  wand.style.left = "50%";
-  wand.style.top = "60%";
-}
+  let delay = 300;
+  lines.forEach(line => {
+    setTimeout(() => {
+      line.style.opacity = 1;
+    }, delay);
+    delay += 800;
+  });
+
+  setTimeout(() => {
+    signature.style.opacity = 1;
+  }, delay + 500);
+
+  setTimeout(() => {
+    finalMagic.classList.add("show");
+  }, delay + 1500);
+});
