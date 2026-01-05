@@ -1,193 +1,37 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magical Birthday ✨</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-  height: 100vh;
-  background: radial-gradient(circle at top, #0b0b2e, #000);
-  overflow: hidden;
-  font-family: Georgia, serif;
-  color: gold;
-  cursor: none;
-}
+  <!-- Wand -->
+  <div id="wand">
+    <div class="wand-tip"></div>
+  </div>
 
-/* Main center */
-.container {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 10;
-}
+  <!-- Main Content -->
+  <div class="container">
+    <h1 class="title">Happy Birthday</h1>
+    <h2 id="name">✨ Nandita ✨</h2>
+    <button id="spellBtn">Cast Birthday Spell 🪄</button>
+  </div>
 
-/* Title */
-.title {
-  font-size: 3rem;
-  animation: glow 2s infinite alternate;
-}
+  <!-- Letter Overlay -->
+  <div id="letterOverlay">
+    <div class="letter">
+      <div class="seal" id="waxSeal">🕯</div>
+      <div class="letter-content">
+        <h2>Dear Nandita,</h2>
+        <p id="letterText"></p>
+      </div>
+    </div>
+  </div>
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px gold; }
-  to { text-shadow: 0 0 30px gold; }
-}
-
-/* Name */
-#name {
-  font-size: 2.5rem;
-  margin-top: 10px;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 1s ease;
-}
-
-#name.show {
-  opacity: 1;
-  transform: scale(1);
-  text-shadow: 0 0 35px gold;
-}
-
-/* Button */
-button {
-  margin-top: 30px;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 25px;
-  background: gold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-/* Wand */
-#wand {
-  position: fixed;
-  width: 120px;
-  height: 6px;
-  background: linear-gradient(to right, #4b2e1e, #8b5a2b);
-  border-radius: 4px;
-  transform-origin: left center;
-  pointer-events: none;
-  z-index: 1000;
-}
-
-.wand-tip {
-  position: absolute;
-  right: -6px;
-  top: -6px;
-  width: 18px;
-  height: 18px;
-  background: gold;
-  border-radius: 50%;
-  box-shadow: 0 0 25px gold;
-}
-
-/* Spark trail */
-.spark {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: gold;
-  border-radius: 50%;
-  box-shadow: 0 0 15px gold;
-  animation: spark 1s forwards;
-  pointer-events: none;
-  z-index: 900;
-}
-
-@keyframes spark {
-  to {
-    transform: translateY(-40px);
-    opacity: 0;
-  }
-}
-
-/* Fireworks */
-.firework {
-  position: fixed;
-  width: 14px;
-  height: 14px;
-  background: radial-gradient(circle, #fff, gold);
-  border-radius: 50%;
-  box-shadow: 0 0 30px gold;
-  animation: explode 1.2s forwards;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-@keyframes explode {
-  to {
-    transform: translate(var(--x), var(--y)) scale(0.2);
-    opacity: 0;
-  }
-}
-
-/* Letter Overlay */
-#letterOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.8s ease;
-  z-index: 2000;
-}
-
-#letterOverlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Letter */
-.letter {
-  background: #fdf5e6;
-  color: #000;
-  width: 90%;
-  max-width: 600px;
-  padding: 40px 30px;
-  border-radius: 12px;
-  position: relative;
-  box-shadow: 0 0 40px rgba(255,215,0,0.6);
-  transform: scale(0.8);
-  transition: transform 0.8s ease;
-}
-
-.letter.open {
-  transform: scale(1);
-}
-
-/* Wax Seal */
-.seal {
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  background: crimson;
-  border-radius: 50%;
-  color: gold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(220,20,60,0.8);
-}
-
-/* Letter content */
-.letter-content {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  line-height: 1.8;
-}
-
-.letter.open .letter-content {
-  opacity: 1;
-}
+  <!-- JS ONLY -->
+  <script src="script.js"></script>
+</body>
+</html>
