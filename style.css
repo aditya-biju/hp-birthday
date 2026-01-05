@@ -25,6 +25,7 @@ body {
   z-index: 5;
 }
 
+/* Title glow */
 .title {
   font-size: 3rem;
   animation: glow 2s infinite alternate;
@@ -111,6 +112,7 @@ button {
   background: gold;
   border-radius: 50%;
   box-shadow: 0 0 20px gold;
+  pointer-events: none;
   animation: explode 0.9s forwards;
 }
 
@@ -119,43 +121,4 @@ button {
     transform: translate(var(--x), var(--y));
     opacity: 0;
   }
-}
-
-/* Floating candles */
-#candles {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.candle {
-  position: absolute;
-  width: 8px;
-  height: 40px;
-  background: #eee;
-  border-radius: 4px;
-  animation: float 6s ease-in-out infinite;
-}
-
-.candle::after {
-  content: "";
-  position: absolute;
-  top: -12px;
-  left: -6px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, gold 20%, transparent 70%);
-  animation: flicker 1s infinite alternate;
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-30px); }
-  100% { transform: translateY(0); }
-}
-
-@keyframes flicker {
-  from { opacity: 0.7; }
-  to { opacity: 1; }
 }
