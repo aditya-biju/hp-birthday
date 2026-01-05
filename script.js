@@ -1,4 +1,6 @@
 /* LUMOS INTRO */
+alert("Magic Loaded ✨");
+
 setTimeout(() => {
   document.getElementById("lumos").style.display = "none";
   document.getElementById("content").style.display = "block";
@@ -32,3 +34,4 @@ function castSpell() {
     setTimeout(() => p.remove(), 3000);
   }
 }
+
