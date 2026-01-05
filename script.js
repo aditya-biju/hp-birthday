@@ -22,3 +22,14 @@ document.querySelector(".spell-btn").addEventListener("click", () => {
 
   alert("✨ May your year be full of magic ✨");
 });
+const container = document.getElementById("magic-particles");
+
+for (let i = 0; i < 40; i++) {
+  const particle = document.createElement("div");
+  particle.className = "particle";
+  particle.style.left = Math.random() * 100 + "vw";
+  particle.style.animationDelay = Math.random() * 6 + "s";
+  particle.style.animationDuration = 4 + Math.random() * 4 + "s";
+  container.appendChild(particle);
+}
+
