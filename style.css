@@ -88,4 +88,18 @@ body {
   text-align: center;
   background: #0e0e3a;
 }
+.letter {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: reveal 1s forwards;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 
