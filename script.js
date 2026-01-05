@@ -49,11 +49,11 @@ btn.addEventListener("click", () => {
 });
 
 // Typing letter
-const message = `On this magical day, I just wanted to remind you how special you are.
+const message = `HAPPY BIRTHDAY i know a lot of happy birthday msges popped up hehe so 20 aayi le kelavi kutti...Coming to BNC will be one of my best decision because
+i met YOU! there. Coming to tution classes after a lot of practise sessions were boring and tiring but because of the small small fights we had it was cute and noice
+and made my mind happy happy.I really really want to meet you ASAP!!! but because of some restrictions we cant but in future WE MUST MEET!!.now i know we got a lot of 
+things on our plate and we must keep things in priority but just know that you are one of my priorities.I AM REALLY SORRY for the breaking part my decision were immature.
 
-May your life be filled with happiness, confidence, and joy.
-
-Always believe in magic — because you are magic ✨
 
 Happy Birthday 💖`;
 
@@ -74,3 +74,4 @@ seal.addEventListener("click", () => {
   i = 0;
   typeText();
 });
+
