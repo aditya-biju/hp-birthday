@@ -1,11 +1,14 @@
 const wand = document.getElementById("wand");
 const button = document.getElementById("spellBtn");
 const nameText = document.getElementById("name");
+const overlay = document.getElementById("letterOverlay");
+const letter = document.querySelector(".letter");
+const seal = document.getElementById("waxSeal");
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-/* Move wand */
+/* Wand movement */
 function moveWand(x, y) {
   mouseX = x;
   mouseY = y;
@@ -17,11 +20,11 @@ function moveWand(x, y) {
   createSpark(x, y);
 }
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", e => {
   moveWand(e.clientX, e.clientY);
 });
 
-document.addEventListener("touchmove", (e) => {
+document.addEventListener("touchmove", e => {
   const t = e.touches[0];
   moveWand(t.clientX, t.clientY);
 });
@@ -33,11 +36,10 @@ function createSpark(x, y) {
   spark.style.left = x + "px";
   spark.style.top = y + "px";
   document.body.appendChild(spark);
-
   setTimeout(() => spark.remove(), 1000);
 }
 
-/* Fireworks (center explosion) */
+/* Fireworks */
 function fireworks() {
   const cx = window.innerWidth / 2;
   const cy = window.innerHeight / 2;
@@ -63,4 +65,13 @@ function fireworks() {
 button.addEventListener("click", () => {
   nameText.classList.add("show");
   fireworks();
+
+  setTimeout(() => {
+    overlay.classList.add("show");
+  }, 800);
+});
+
+/* Wax seal click */
+seal.addEventListener("click", () => {
+  letter.classList.add("open");
 });
