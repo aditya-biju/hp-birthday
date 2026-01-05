@@ -1,35 +1,26 @@
-gsap.from(".magic-text", {
-  opacity: 0,
-  y: -50,
-  duration: 2,
-  ease: "power2.out"
-});
+/* INTRO TRANSITION */
+setTimeout(() => {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("main-content").style.display = "block";
+}, 4000);
 
-gsap.from(".sub-text", {
-  opacity: 0,
-  y: 20,
-  delay: 1,
-  duration: 1
-});
+/* MAGIC PARTICLES */
+setInterval(() => {
+  const p = document.createElement("div");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(p);
 
-document.querySelector(".spell-btn").addEventListener("click", () => {
-  gsap.to("body", {
-    backgroundColor: "#1a0033",
-    duration: 0.5,
-    yoyo: true,
-    repeat: 1
-  });
+  setTimeout(() => {
+    p.remove();
+  }, 3000);
+}, 150);
 
-  alert("✨ May your year be full of magic ✨");
-});
-const container = document.getElementById("magic-particles");
+/* SPELL EFFECT */
+function castSpell() {
+  document.body.style.background = "white";
 
-for (let i = 0; i < 40; i++) {
-  const particle = document.createElement("div");
-  particle.className = "particle";
-  particle.style.left = Math.random() * 100 + "vw";
-  particle.style.animationDelay = Math.random() * 6 + "s";
-  particle.style.animationDuration = 4 + Math.random() * 4 + "s";
-  container.appendChild(particle);
+  setTimeout(() => {
+    document.body.style.background = "";
+  }, 150);
 }
-
