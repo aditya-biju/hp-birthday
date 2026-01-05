@@ -1,22 +1,54 @@
-/* LUMOS INTRO */
-alert("Magic Loaded ✨");
+const wand = document.getElementById("wand");
+const btn = document.getElementById("spellBtn");
 
-console.log("Magic Loaded");
+let x = window.innerWidth / 2;
+let y = window.innerHeight / 2;
 
-window.onload = () => {
-  setTimeout(() => {
-    document.getElementById("lumos").style.display = "none";
-    document.getElementById("content").style.display = "block";
-  }, 3000);
-};
+// Mouse + touch support
+function moveWand(clientX, clientY) {
+  x = clientX;
+  y = clientY;
 
-setInterval(() => {
-  const p = document.createElement("div");
-  p.className = "particle";
-  p.style.left = Math.random() * window.innerWidth + "px";
-  p.style.top = window.innerHeight + "px";
-  document.body.appendChild(p);
+  wand.style.left = x + "px";
+  wand.style.top = y + "px";
+  wand.style.transform = "rotate(20deg)";
 
-  setTimeout(() => p.remove(), 3000);
-}, 100);
+  createSpark(x, y);
+}
 
+document.addEventListener("mousemove", e => {
+  moveWand(e.clientX, e.clientY);
+});
+
+document.addEventListener("touchmove", e => {
+  const t = e.touches[0];
+  moveWand(t.clientX, t.clientY);
+});
+
+// Spark trail
+function createSpark(x, y) {
+  const s = document.createElement("div");
+  s.className = "spark";
+  s.style.left = x + "px";
+  s.style.top = y + "px";
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 1000);
+}
+
+// Spell explosion
+function spellBurst(x, y) {
+  for (let i = 0; i < 20; i++) {
+    const b = document.createElement("div");
+    b.className = "burst";
+    b.style.left = x + "px";
+    b.style.top = y + "px";
+    b.style.setProperty("--x", `${Math.random() * 200 - 100}px`);
+    b.style.setProperty("--y", `${Math.random() * 200 - 100}px`);
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 800);
+  }
+}
+
+btn.addEventListener("click", () => {
+  spellBurst(x, y);
+});
