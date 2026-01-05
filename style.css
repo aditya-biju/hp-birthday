@@ -22,7 +22,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  z-index: 5;
+  z-index: 10;
 }
 
 /* Title glow */
@@ -95,6 +95,7 @@ button {
   box-shadow: 0 0 15px gold;
   pointer-events: none;
   animation: spark 1s forwards;
+  z-index: 900;
 }
 
 @keyframes spark {
@@ -107,18 +108,19 @@ button {
 /* Fireworks */
 .firework {
   position: fixed;
-  width: 10px;
-  height: 10px;
-  background: gold;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #fff, gold);
   border-radius: 50%;
-  box-shadow: 0 0 20px gold;
+  box-shadow: 0 0 30px gold;
   pointer-events: none;
-  animation: explode 0.9s forwards;
+  z-index: 9999;
+  animation: explode 1.2s forwards;
 }
 
 @keyframes explode {
   to {
-    transform: translate(var(--x), var(--y));
+    transform: translate(var(--x), var(--y)) scale(0.2);
     opacity: 0;
   }
 }
