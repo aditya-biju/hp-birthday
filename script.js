@@ -2,19 +2,19 @@ const wand = document.getElementById("wand");
 const button = document.getElementById("spellBtn");
 const nameText = document.getElementById("name");
 
-let x = window.innerWidth / 2;
-let y = window.innerHeight / 2;
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
 
 /* Move wand */
-function moveWand(px, py) {
-  x = px;
-  y = py;
+function moveWand(x, y) {
+  mouseX = x;
+  mouseY = y;
 
-  wand.style.left = px + "px";
-  wand.style.top = py + "px";
+  wand.style.left = x + "px";
+  wand.style.top = y + "px";
   wand.style.transform = "rotate(15deg)";
 
-  createSpark(px, py);
+  createSpark(x, y);
 }
 
 document.addEventListener("mousemove", (e) => {
@@ -27,33 +27,40 @@ document.addEventListener("touchmove", (e) => {
 });
 
 /* Spark trail */
-function createSpark(px, py) {
+function createSpark(x, y) {
   const spark = document.createElement("div");
   spark.className = "spark";
-  spark.style.left = px + "px";
-  spark.style.top = py + "px";
+  spark.style.left = x + "px";
+  spark.style.top = y + "px";
   document.body.appendChild(spark);
 
   setTimeout(() => spark.remove(), 1000);
 }
 
-/* Fireworks */
-function fireworks(px, py) {
-  for (let i = 0; i < 35; i++) {
+/* Fireworks (center explosion) */
+function fireworks() {
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2;
+
+  for (let i = 0; i < 60; i++) {
     const f = document.createElement("div");
     f.className = "firework";
-    f.style.left = px + "px";
-    f.style.top = py + "px";
-    f.style.setProperty("--x", `${Math.random() * 300 - 150}px`);
-    f.style.setProperty("--y", `${Math.random() * 300 - 150}px`);
-    document.body.appendChild(f);
+    f.style.left = cx + "px";
+    f.style.top = cy + "px";
 
-    setTimeout(() => f.remove(), 900);
+    const angle = Math.random() * Math.PI * 2;
+    const distance = Math.random() * 300 + 50;
+
+    f.style.setProperty("--x", `${Math.cos(angle) * distance}px`);
+    f.style.setProperty("--y", `${Math.sin(angle) * distance}px`);
+
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 1200);
   }
 }
 
 /* Button click */
 button.addEventListener("click", () => {
   nameText.classList.add("show");
-  fireworks(x, y);
+  fireworks();
 });
