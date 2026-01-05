@@ -1,101 +1,76 @@
 const wand = document.getElementById("wand");
-const button = document.getElementById("spellBtn");
+const btn = document.getElementById("spellBtn");
 const nameText = document.getElementById("name");
 const overlay = document.getElementById("letterOverlay");
-const letter = document.querySelector(".letter");
-const seal = document.getElementById("waxSeal");
+const letter = document.getElementById("letter");
+const seal = document.getElementById("seal");
 const letterText = document.getElementById("letterText");
 
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
+let x = window.innerWidth / 2;
+let y = window.innerHeight / 2;
 
-/* Wand movement */
-function moveWand(x, y) {
-  mouseX = x;
-  mouseY = y;
-
+// Move wand + sparks
+document.addEventListener("mousemove", e => {
+  x = e.clientX;
+  y = e.clientY;
   wand.style.left = x + "px";
   wand.style.top = y + "px";
-  wand.style.transform = "rotate(15deg)";
-  createSpark(x, y);
-}
 
-document.addEventListener("mousemove", e => {
-  moveWand(e.clientX, e.clientY);
+  const s = document.createElement("div");
+  s.className = "spark";
+  s.style.left = x + "px";
+  s.style.top = y + "px";
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 1000);
 });
 
-document.addEventListener("touchmove", e => {
-  const t = e.touches[0];
-  moveWand(t.clientX, t.clientY);
-});
-
-/* Spark trail */
-function createSpark(x, y) {
-  const spark = document.createElement("div");
-  spark.className = "spark";
-  spark.style.left = x + "px";
-  spark.style.top = y + "px";
-  document.body.appendChild(spark);
-  setTimeout(() => spark.remove(), 1000);
-}
-
-/* Fireworks */
+// Fireworks
 function fireworks() {
   const cx = window.innerWidth / 2;
   const cy = window.innerHeight / 2;
 
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 40; i++) {
     const f = document.createElement("div");
     f.className = "firework";
     f.style.left = cx + "px";
     f.style.top = cy + "px";
-
-    const angle = Math.random() * Math.PI * 2;
-    const distance = Math.random() * 300 + 50;
-
-    f.style.setProperty("--x", `${Math.cos(angle) * distance}px`);
-    f.style.setProperty("--y", `${Math.sin(angle) * distance}px`);
-
+    f.style.setProperty("--x", `${Math.random() * 300 - 150}px`);
+    f.style.setProperty("--y", `${Math.random() * 300 - 150}px`);
     document.body.appendChild(f);
-    setTimeout(() => f.remove(), 1200);
+    setTimeout(() => f.remove(), 1000);
   }
 }
 
-/* Button click */
-button.addEventListener("click", () => {
+// Spell button
+btn.addEventListener("click", () => {
   nameText.classList.add("show");
   fireworks();
-  setTimeout(() => overlay.classList.add("show"), 800);
+  setTimeout(() => overlay.classList.add("show"), 700);
 });
 
-/* Typing letter */
+// Typing letter
 const message = `On this magical day, I just wanted to remind you how special you are.
 
-Your kindness, smile, and energy make the world brighter.
-
-May this year bring happiness, confidence, and unforgettable moments.
+May your life be filled with happiness, confidence, and joy.
 
 Always believe in magic — because you are magic ✨
 
 Happy Birthday 💖`;
 
-let index = 0;
+let i = 0;
 
-function typeLetter() {
-  if (index < message.length) {
-    letterText.innerHTML += message[index] === "\n" ? "<br>" : message[index];
-    index++;
-    setTimeout(typeLetter, 35);
-  } else {
-    letterText.classList.remove("typing-cursor");
+function typeText() {
+  if (i < message.length) {
+    letterText.innerHTML += message[i] === "\n" ? "<br>" : message[i];
+    i++;
+    setTimeout(typeText, 35);
   }
 }
 
-/* Wax seal click */
+// Seal click
 seal.addEventListener("click", () => {
   letter.classList.add("open");
   letterText.innerHTML = "";
-  letterText.classList.add("typing-cursor");
-  index = 0;
-  setTimeout(typeLetter, 400);
+  i = 0;
+  typeText();
 });
