@@ -1,54 +1,65 @@
 const wand = document.getElementById("wand");
-const btn = document.getElementById("spellBtn");
+const button = document.getElementById("spellBtn");
+const nameText = document.getElementById("name");
 
-let x = window.innerWidth / 2;
-let y = window.innerHeight / 2;
+let posX = window.innerWidth / 2;
+let posY = window.innerHeight / 2;
 
-// Mouse + touch support
-function moveWand(clientX, clientY) {
-  x = clientX;
-  y = clientY;
+/* Move Wand */
+function moveWand(x, y) {
+  posX = x;
+  posY = y;
 
   wand.style.left = x + "px";
   wand.style.top = y + "px";
-  wand.style.transform = "rotate(20deg)";
+  wand.style.transform = "rotate(15deg)";
 
   createSpark(x, y);
 }
 
-document.addEventListener("mousemove", e => {
+/* Mouse */
+document.addEventListener("mousemove", (e) => {
   moveWand(e.clientX, e.clientY);
 });
 
-document.addEventListener("touchmove", e => {
-  const t = e.touches[0];
-  moveWand(t.clientX, t.clientY);
+/* Touch */
+document.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  moveWand(touch.clientX, touch.clientY);
 });
 
-// Spark trail
+/* Spark Trail */
 function createSpark(x, y) {
-  const s = document.createElement("div");
-  s.className = "spark";
-  s.style.left = x + "px";
-  s.style.top = y + "px";
-  document.body.appendChild(s);
-  setTimeout(() => s.remove(), 1000);
+  const spark = document.createElement("div");
+  spark.className = "spark";
+  spark.style.left = x + "px";
+  spark.style.top = y + "px";
+  document.body.appendChild(spark);
+
+  setTimeout(() => {
+    spark.remove();
+  }, 1000);
 }
 
-// Spell explosion
+/* Spell Burst */
 function spellBurst(x, y) {
-  for (let i = 0; i < 20; i++) {
-    const b = document.createElement("div");
-    b.className = "burst";
-    b.style.left = x + "px";
-    b.style.top = y + "px";
-    b.style.setProperty("--x", `${Math.random() * 200 - 100}px`);
-    b.style.setProperty("--y", `${Math.random() * 200 - 100}px`);
-    document.body.appendChild(b);
-    setTimeout(() => b.remove(), 800);
+  for (let i = 0; i < 25; i++) {
+    const burst = document.createElement("div");
+    burst.className = "burst";
+    burst.style.left = x + "px";
+    burst.style.top = y + "px";
+    burst.style.setProperty("--x", `${Math.random() * 200 - 100}px`);
+    burst.style.setProperty("--y", `${Math.random() * 200 - 100}px`);
+    document.body.appendChild(burst);
+
+    setTimeout(() => {
+      burst.remove();
+    }, 800);
   }
 }
 
-btn.addEventListener("click", () => {
-  spellBurst(x, y);
+/* Button Click */
+button.addEventListener("click", () => {
+  spellBurst(posX, posY);
+  nameText.classList.add("show");
 });
