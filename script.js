@@ -4,11 +4,12 @@ const nameText = document.getElementById("name");
 const overlay = document.getElementById("letterOverlay");
 const letter = document.querySelector(".letter");
 const seal = document.getElementById("waxSeal");
+const letterText = document.getElementById("letterText");
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-/* Move wand */
+/* Wand movement */
 function moveWand(x, y) {
   mouseX = x;
   mouseY = y;
@@ -67,7 +68,34 @@ button.addEventListener("click", () => {
   setTimeout(() => overlay.classList.add("show"), 800);
 });
 
+/* Typing letter */
+const message = `On this magical day, I just wanted to remind you how special you are.
+
+Your kindness, smile, and energy make the world brighter.
+
+May this year bring happiness, confidence, and unforgettable moments.
+
+Always believe in magic — because you are magic ✨
+
+Happy Birthday 💖`;
+
+let index = 0;
+
+function typeLetter() {
+  if (index < message.length) {
+    letterText.innerHTML += message[index] === "\n" ? "<br>" : message[index];
+    index++;
+    setTimeout(typeLetter, 35);
+  } else {
+    letterText.classList.remove("typing-cursor");
+  }
+}
+
 /* Wax seal click */
 seal.addEventListener("click", () => {
   letter.classList.add("open");
+  letterText.innerHTML = "";
+  letterText.classList.add("typing-cursor");
+  index = 0;
+  setTimeout(typeLetter, 400);
 });
