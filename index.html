@@ -1,59 +1,42 @@
-const wand = document.getElementById("wand");
-const button = document.getElementById("spellBtn");
-const nameText = document.getElementById("name");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magical Birthday ✨</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-let x = window.innerWidth / 2;
-let y = window.innerHeight / 2;
+  <!-- Wand -->
+  <div id="wand">
+    <div class="wand-tip"></div>
+  </div>
 
-/* Move wand */
-function moveWand(px, py) {
-  x = px;
-  y = py;
+  <!-- Main Content -->
+  <div class="container">
+    <h1 class="title">Happy Birthday</h1>
+    <h2 id="name">✨ Nandita ✨</h2>
+    <button id="spellBtn">Cast Birthday Spell 🪄</button>
+  </div>
 
-  wand.style.left = px + "px";
-  wand.style.top = py + "px";
-  wand.style.transform = "rotate(15deg)";
+  <!-- Letter Overlay -->
+  <div id="letterOverlay">
+    <div class="letter sealed">
+      <div class="seal" id="waxSeal">🕯</div>
+      <div class="letter-content">
+        <h2>Dear Nandita,</h2>
+        <p>
+          On this magical day, I just wanted to remind you how special you are.<br><br>
+          Your smile brings light, and your presence makes everything warmer.<br><br>
+          May this year bring happiness, confidence, and unforgettable moments.<br><br>
+          Always believe in magic — because you are magic ✨<br><br>
+          <b>Happy Birthday 💖</b>
+        </p>
+      </div>
+    </div>
+  </div>
 
-  createSpark(px, py);
-}
-
-document.addEventListener("mousemove", (e) => {
-  moveWand(e.clientX, e.clientY);
-});
-
-document.addEventListener("touchmove", (e) => {
-  const t = e.touches[0];
-  moveWand(t.clientX, t.clientY);
-});
-
-/* Spark trail */
-function createSpark(px, py) {
-  const spark = document.createElement("div");
-  spark.className = "spark";
-  spark.style.left = px + "px";
-  spark.style.top = py + "px";
-  document.body.appendChild(spark);
-
-  setTimeout(() => spark.remove(), 1000);
-}
-
-/* Fireworks */
-function fireworks(px, py) {
-  for (let i = 0; i < 35; i++) {
-    const f = document.createElement("div");
-    f.className = "firework";
-    f.style.left = px + "px";
-    f.style.top = py + "px";
-    f.style.setProperty("--x", `${Math.random() * 300 - 150}px`);
-    f.style.setProperty("--y", `${Math.random() * 300 - 150}px`);
-    document.body.appendChild(f);
-
-    setTimeout(() => f.remove(), 900);
-  }
-}
-
-/* Button click */
-button.addEventListener("click", () => {
-  nameText.classList.add("show");
-  fireworks(x, y);
-});
+  <script src="script.js"></script>
+</body>
+</html>
