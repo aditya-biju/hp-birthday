@@ -28,8 +28,8 @@ h1 {
 }
 
 #name {
-  margin-top: 10px;
   font-size: 2.2rem;
+  margin-top: 10px;
   opacity: 0;
   transition: 1s;
 }
@@ -54,7 +54,7 @@ button {
   position: fixed;
   width: 100px;
   height: 4px;
-  background: brown;
+  background: #7b4a12;
   pointer-events: none;
 }
 
@@ -92,7 +92,7 @@ button {
   }
 }
 
-/* Letter */
+/* Letter Overlay */
 #letterOverlay {
   position: fixed;
   inset: 0;
@@ -102,7 +102,7 @@ button {
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: 0.8s;
+  transition: 0.6s;
 }
 
 #letterOverlay.show {
@@ -110,6 +110,7 @@ button {
   pointer-events: auto;
 }
 
+/* Letter */
 #letter {
   background: #fdf5e6;
   color: #000;
@@ -126,6 +127,7 @@ button {
   transform: scale(1);
 }
 
+/* Wax Seal */
 #seal {
   position: absolute;
   top: -20px;
@@ -140,4 +142,27 @@ button {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+/* Final Magic Name */
+#finalMagic {
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: gold;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 0 0 25px gold;
+}
+
+#finalMagic.show {
+  opacity: 1;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 15px gold; }
+  to { text-shadow: 0 0 40px gold; }
 }
