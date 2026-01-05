@@ -1,65 +1,68 @@
 const wand = document.getElementById("wand");
 const button = document.getElementById("spellBtn");
 const nameText = document.getElementById("name");
+const candleContainer = document.getElementById("candles");
 
-let posX = window.innerWidth / 2;
-let posY = window.innerHeight / 2;
+let x = window.innerWidth / 2;
+let y = window.innerHeight / 2;
 
-/* Move Wand */
-function moveWand(x, y) {
-  posX = x;
-  posY = y;
+/* Wand movement */
+function moveWand(px, py) {
+  x = px;
+  y = py;
 
-  wand.style.left = x + "px";
-  wand.style.top = y + "px";
+  wand.style.left = px + "px";
+  wand.style.top = py + "px";
   wand.style.transform = "rotate(15deg)";
 
-  createSpark(x, y);
+  createSpark(px, py);
 }
 
-/* Mouse */
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", e => {
   moveWand(e.clientX, e.clientY);
 });
 
-/* Touch */
-document.addEventListener("touchmove", (e) => {
-  const touch = e.touches[0];
-  moveWand(touch.clientX, touch.clientY);
+document.addEventListener("touchmove", e => {
+  const t = e.touches[0];
+  moveWand(t.clientX, t.clientY);
 });
 
-/* Spark Trail */
-function createSpark(x, y) {
-  const spark = document.createElement("div");
-  spark.className = "spark";
-  spark.style.left = x + "px";
-  spark.style.top = y + "px";
-  document.body.appendChild(spark);
-
-  setTimeout(() => {
-    spark.remove();
-  }, 1000);
+/* Spark trail */
+function createSpark(px, py) {
+  const s = document.createElement("div");
+  s.className = "spark";
+  s.style.left = px + "px";
+  s.style.top = py + "px";
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 1000);
 }
 
-/* Spell Burst */
-function spellBurst(x, y) {
-  for (let i = 0; i < 25; i++) {
-    const burst = document.createElement("div");
-    burst.className = "burst";
-    burst.style.left = x + "px";
-    burst.style.top = y + "px";
-    burst.style.setProperty("--x", `${Math.random() * 200 - 100}px`);
-    burst.style.setProperty("--y", `${Math.random() * 200 - 100}px`);
-    document.body.appendChild(burst);
-
-    setTimeout(() => {
-      burst.remove();
-    }, 800);
+/* Fireworks */
+function fireworks(px, py) {
+  for (let i = 0; i < 30; i++) {
+    const f = document.createElement("div");
+    f.className = "firework";
+    f.style.left = px + "px";
+    f.style.top = py + "px";
+    f.style.setProperty("--x", `${Math.random() * 300 - 150}px`);
+    f.style.setProperty("--y", `${Math.random() * 300 - 150}px`);
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 900);
   }
 }
 
-/* Button Click */
+/* Floating candles */
+for (let i = 0; i < 12; i++) {
+  const c = document.createElement("div");
+  c.className = "candle";
+  c.style.left = Math.random() * 100 + "vw";
+  c.style.top = Math.random() * 60 + "vh";
+  c.style.animationDelay = Math.random() * 4 + "s";
+  candleContainer.appendChild(c);
+}
+
+/* Button click */
 button.addEventListener("click", () => {
-  spellBurst(posX, posY);
   nameText.classList.add("show");
+  fireworks(x, y);
 });
