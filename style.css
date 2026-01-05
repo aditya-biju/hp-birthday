@@ -8,12 +8,12 @@ body {
   height: 100vh;
   background: radial-gradient(circle at top, #0b0b2e, #000);
   overflow: hidden;
-  font-family: 'Georgia', serif;
+  font-family: Georgia, serif;
   color: gold;
   cursor: none;
 }
 
-/* Center Content */
+/* Center content */
 .container {
   position: absolute;
   inset: 0;
@@ -22,6 +22,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  z-index: 5;
 }
 
 .title {
@@ -29,6 +30,12 @@ body {
   animation: glow 2s infinite alternate;
 }
 
+@keyframes glow {
+  from { text-shadow: 0 0 10px gold; }
+  to { text-shadow: 0 0 30px gold; }
+}
+
+/* Name reveal */
 #name {
   font-size: 2.5rem;
   margin-top: 10px;
@@ -40,23 +47,18 @@ body {
 #name.show {
   opacity: 1;
   transform: scale(1);
-  text-shadow: 0 0 30px gold;
+  text-shadow: 0 0 35px gold;
 }
 
+/* Button */
 button {
   margin-top: 30px;
-  padding: 12px 28px;
+  padding: 12px 30px;
   border: none;
   border-radius: 25px;
   background: gold;
   font-size: 1rem;
   cursor: pointer;
-}
-
-/* Glow Animation */
-@keyframes glow {
-  from { text-shadow: 0 0 10px gold; }
-  to { text-shadow: 0 0 30px gold; }
 }
 
 /* Wand */
@@ -82,7 +84,7 @@ button {
   box-shadow: 0 0 25px gold;
 }
 
-/* Spark Trail */
+/* Spark trail */
 .spark {
   position: fixed;
   width: 6px;
@@ -101,21 +103,59 @@ button {
   }
 }
 
-/* Spell Burst */
-.burst {
+/* Fireworks */
+.firework {
   position: fixed;
   width: 10px;
   height: 10px;
   background: gold;
   border-radius: 50%;
   box-shadow: 0 0 20px gold;
-  pointer-events: none;
-  animation: burst 0.8s forwards;
+  animation: explode 0.9s forwards;
 }
 
-@keyframes burst {
+@keyframes explode {
   to {
     transform: translate(var(--x), var(--y));
     opacity: 0;
   }
+}
+
+/* Floating candles */
+#candles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.candle {
+  position: absolute;
+  width: 8px;
+  height: 40px;
+  background: #eee;
+  border-radius: 4px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.candle::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: -6px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, gold 20%, transparent 70%);
+  animation: flicker 1s infinite alternate;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes flicker {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
 }
