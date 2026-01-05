@@ -120,4 +120,74 @@ button {
 
 @keyframes explode {
   to {
-    transform: translate(var(--x), var
+    transform: translate(var(--x), var(--y)) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* Letter Overlay */
+#letterOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  z-index: 2000;
+}
+
+#letterOverlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Letter */
+.letter {
+  background: #fdf5e6;
+  color: #000;
+  width: 90%;
+  max-width: 600px;
+  padding: 40px 30px;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 0 40px rgba(255,215,0,0.6);
+  transform: scale(0.8);
+  transition: transform 0.8s ease;
+}
+
+.letter.open {
+  transform: scale(1);
+}
+
+/* Wax Seal */
+.seal {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: crimson;
+  border-radius: 50%;
+  color: gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(220,20,60,0.8);
+}
+
+/* Letter content */
+.letter-content {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  line-height: 1.8;
+}
+
+.letter.open .letter-content {
+  opacity: 1;
+}
