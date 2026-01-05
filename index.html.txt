@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magical Birthday</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1 class="magic-text">Happy Birthday 🪄</h1>
+    <p class="sub-text">Welcome to the Wizarding World</p>
+    <button class="spell-btn">Cast Birthday Spell</button>
+  </section>
+<section class="letter">
+  <h2>Your Hogwarts Letter 📜</h2>
+  <p>
+    Dear Wizard,<br><br>
+    You are invited to celebrate a magical birthday.<br>
+    Let the magic begin!
+  </p>
+</section>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

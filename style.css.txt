@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle, #0b0b2e, #000);
+  color: gold;
+  font-family: 'Cinzel', serif;
+  height: 100vh;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.magic-text {
+  font-size: 3rem;
+  text-shadow: 0 0 20px gold;
+}
+
+.sub-text {
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+.spell-btn {
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: gold;
+  color: black;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.spell-btn:hover {
+  transform: scale(1.1);
+}
+
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+  .magic-text {
+    font-size: 2.2rem;
+  }
+}
+.letter {
+  padding: 60px 20px;
+  text-align: center;
+  background: #0e0e3a;
+}
