@@ -1,45 +1,45 @@
-/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Georgia', serif;
+  font-family: "Georgia", serif;
 }
 
 body {
-  background: radial-gradient(#0b0b2e, #000);
+  background: radial-gradient(circle at center, #0b0b2e, #000);
   color: gold;
   overflow-x: hidden;
 }
 
-/* INTRO SCREEN */
-#intro {
+/* ===== LUMOS INTRO ===== */
+#lumos {
   position: fixed;
   inset: 0;
-  background: radial-gradient(#000020, #000);
+  background: black;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 9999;
 }
 
-.spell-text {
-  font-size: 3rem;
-  animation: glow 2s infinite;
+.lumos-text {
+  font-size: 3.5rem;
+  color: gold;
+  animation: lumosGlow 2s infinite;
 }
 
-@keyframes glow {
-  0% { opacity: 0.3; text-shadow: 0 0 5px gold; }
-  50% { opacity: 1; text-shadow: 0 0 30px gold; }
-  100% { opacity: 0.3; text-shadow: 0 0 5px gold; }
+@keyframes lumosGlow {
+  0% { opacity: 0.2; text-shadow: 0 0 10px gold; }
+  50% { opacity: 1; text-shadow: 0 0 60px gold; }
+  100% { opacity: 0.2; text-shadow: 0 0 10px gold; }
 }
 
-/* MAIN CONTENT */
-#main-content {
+/* ===== MAIN ===== */
+#content {
   display: none;
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -47,10 +47,9 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px;
 }
 
-.hero h1 {
+.title {
   font-size: 3rem;
   animation: fadeDown 1.5s ease forwards;
 }
@@ -65,24 +64,25 @@ body {
 button {
   margin-top: 30px;
   padding: 15px 30px;
-  font-size: 1rem;
-  background: gold;
-  color: #000;
-  border: none;
   border-radius: 30px;
+  border: none;
+  background: gold;
+  color: black;
+  font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
+  box-shadow: 0 0 25px gold;
 }
 
-/* LETTER SECTION */
+/* LETTER */
 .letter {
   padding: 60px 20px;
-  background: linear-gradient(#111133, #000);
   text-align: center;
+  background: linear-gradient(#0a0a2a, #000);
 }
 
 .letter h2 {
@@ -98,20 +98,12 @@ button:hover {
 
 /* ANIMATIONS */
 @keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+  to { opacity: 1; }
 }
 
 /* MAGIC PARTICLES */
@@ -121,23 +113,23 @@ button:hover {
   height: 4px;
   background: gold;
   border-radius: 50%;
-  animation: float 3s linear infinite;
+  animation: floatUp 3s linear forwards;
+  pointer-events: none;
 }
 
-@keyframes float {
+@keyframes floatUp {
   from {
     transform: translateY(100vh);
     opacity: 1;
   }
   to {
-    transform: translateY(-10vh);
+    transform: translateY(-20vh);
     opacity: 0;
   }
 }
 
 /* MOBILE */
 @media (max-width: 600px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
+  .title { font-size: 2.2rem; }
+  .lumos-text { font-size: 2.5rem; }
 }
