@@ -1,168 +1,53 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday ✨</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-  height: 100vh;
-  background: radial-gradient(circle at top, #0b0b2e, #000);
-  font-family: Georgia, serif;
-  color: gold;
-  overflow: hidden;
-}
+  <!-- Wand -->
+  <div id="wand"></div>
 
-/* Center content */
-.container {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+  <!-- Main Screen -->
+  <div class="container">
+    <h1>Happy Birthday</h1>
+    <h2 id="name">✨ Nandita ✨</h2>
+    <button id="spellBtn">Cast Birthday Spell 🪄</button>
+  </div>
 
-h1 {
-  font-size: 3rem;
-}
+  <!-- Letter Overlay -->
+  <div id="letterOverlay">
+    <div id="letter">
+      <div id="seal">🕯</div>
 
-#name {
-  font-size: 2.2rem;
-  margin-top: 10px;
-  opacity: 0;
-  transition: 1s;
-}
+      <p class="ink">Dear Nandita,</p>
+      <p class="ink">
+        On this magical day, I just wanted to remind you how special you truly are.
+      </p>
+      <p class="ink">
+        Your kindness, your smile, and the way you light up moments without even trying —
+        they matter more than you know.
+      </p>
+      <p class="ink">
+        May this year bring you confidence, happiness, and memories that stay warm long after today.
+      </p>
+      <p class="ink">
+        Always believe in magic — because you are magic ✨
+      </p>
+      <p class="ink">
+        Happy Birthday 💛
+      </p>
 
-#name.show {
-  opacity: 1;
-  text-shadow: 0 0 25px gold;
-}
+      <p id="signature">— MAB</p>
+    </div>
+  </div>
 
-button {
-  margin-top: 25px;
-  padding: 10px 24px;
-  font-size: 1rem;
-  border-radius: 20px;
-  border: none;
-  background: gold;
-  cursor: pointer;
-}
+  <!-- Final Name -->
+  <div id="finalMagic">✨ Nandita ✨</div>
 
-/* Wand */
-#wand {
-  position: fixed;
-  width: 100px;
-  height: 4px;
-  background: #7b4a12;
-  pointer-events: none;
-}
-
-/* Spark */
-.spark {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: gold;
-  border-radius: 50%;
-  animation: spark 1s forwards;
-}
-
-@keyframes spark {
-  to {
-    transform: translateY(-30px);
-    opacity: 0;
-  }
-}
-
-/* Fireworks */
-.firework {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  background: gold;
-  border-radius: 50%;
-  animation: boom 1s forwards;
-}
-
-@keyframes boom {
-  to {
-    transform: translate(var(--x), var(--y));
-    opacity: 0;
-  }
-}
-
-/* Letter Overlay */
-#letterOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.6s;
-}
-
-#letterOverlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Letter */
-#letter {
-  background: #fdf5e6;
-  color: #000;
-  padding: 30px;
-  width: 90%;
-  max-width: 500px;
-  border-radius: 10px;
-  position: relative;
-  transform: scale(0.8);
-  transition: 0.6s;
-}
-
-#letter.open {
-  transform: scale(1);
-}
-
-/* Wax Seal */
-#seal {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 50px;
-  background: crimson;
-  color: gold;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-/* Final Magic Name */
-#finalMagic {
-  position: fixed;
-  top: 65%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
-  color: gold;
-  opacity: 0;
-  pointer-events: none;
-  text-shadow: 0 0 25px gold;
-}
-
-#finalMagic.show {
-  opacity: 1;
-  animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 15px gold; }
-  to { text-shadow: 0 0 40px gold; }
-}
+  <script src="script.js"></script>
+</body>
+</html>
