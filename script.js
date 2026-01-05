@@ -8,7 +8,7 @@ const seal = document.getElementById("waxSeal");
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-/* Wand movement */
+/* Move wand */
 function moveWand(x, y) {
   mouseX = x;
   mouseY = y;
@@ -16,7 +16,6 @@ function moveWand(x, y) {
   wand.style.left = x + "px";
   wand.style.top = y + "px";
   wand.style.transform = "rotate(15deg)";
-
   createSpark(x, y);
 }
 
@@ -65,10 +64,7 @@ function fireworks() {
 button.addEventListener("click", () => {
   nameText.classList.add("show");
   fireworks();
-
-  setTimeout(() => {
-    overlay.classList.add("show");
-  }, 800);
+  setTimeout(() => overlay.classList.add("show"), 800);
 });
 
 /* Wax seal click */
